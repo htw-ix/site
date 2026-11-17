@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChiliadMods</title>
+<meta name="description" content="ChiliadMods — open source GTA V mods. MIT license, human-crafted with AI assistance.">
+<meta property="og:title" content="ChiliadMods">
+<meta property="og:description" content="Open source GTA V mods. MIT license.">
+<meta property="og:image" content="images/logo_256x256.webp">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/logo_180x180.webp">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+<div class="preloader" id="preloader">
+  <div class="pre-core">
+    <img class="pre-ring" src="images/icons/ring.svg" alt="">
+    <img class="pre-logo" src="images/logo_128x128.webp" alt="ChiliadMods">
+  </div>
+  <div class="pre-brand">CHILIAD MODS</div>
+</div>
+<div class="chooser" id="chooser">
+  <p class="chooser-hint">Выбери язык · Choose language</p>
+  <div class="chooser-btns">
+    <button class="lang-btn" data-lang="ru"><img src="images/icons/lang-ru.svg" alt="Русский"><span>Русский</span></button>
+    <button class="lang-btn" data-lang="en"><img src="images/icons/lang-en.svg" alt="English"><span>English</span></button>
+  </div>
+</div>
+<div class="page">
+<header class="top">
+  <a class="brand" href="index.html">
+    <span>CHILIAD&nbsp;MODS</span>
+  </a>
+  <nav class="nav">
+    <a class="on" href="index.html" data-i18n="nav.home"></a>
+    <a href="mods.html" data-i18n="nav.mods"></a>
+    <a href="about.html" data-i18n="nav.about"></a>
+    <a href="contacts.html" data-i18n="nav.contacts"></a>
+  </nav>
+  <div class="lang-switch" id="langSwitch">
+    <button data-setlang="ru">RU</button>
+    <button data-setlang="en">EN</button>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="hero-vis">
+      <img class="hero-ring" src="images/icons/hero-ring.svg" alt="">
+      <img class="hero-logo" src="images/logo_1024x1024.webp" alt="ChiliadMods">
+    </div>
+    <p class="hero-tag anim" style="--d:.15s" data-i18n="home.hero.tag"></p>
+    <p class="hero-sub anim" style="--d:.3s" data-i18n="home.hero.sub"></p>
+    <div class="chips anim" style="--d:.45s">
+      <span class="chip" data-i18n="home.chips.oss"></span>
+      <span class="chip gold" data-i18n="home.chips.mit"></span>
+      <span class="chip" data-i18n="home.chips.est"></span>
+    </div>
+    <div class="cta anim" style="--d:.6s">
+      <a class="btn" href="mods.html"><img src="images/icons/wrench.svg" alt=""><span data-i18n="home.cta.mods"></span><img class="arr" src="images/icons/arrow.svg" alt=""></a>
+      <a class="btn ghost" href="about.html"><span data-i18n="home.cta.about"></span></a>
+      <a class="btn ghost" href="contacts.html"><span data-i18n="home.cta.contacts"></span></a>
+    </div>
+  </section>
+  <section class="panel soon anim" style="--d:.75s">
+    <div class="soon-info">
+      <p class="overline" data-i18n="home.soon.label"></p>
+      <h2 data-i18n="home.soon.title"></h2>
+      <p class="muted" data-i18n="home.soon.text"></p>
+      <div class="row">
+        <span class="status" data-i18n="home.soon.status"></span>
+        <a class="btn ghost sm" href="https://github.com/chiliadmods" target="_blank" rel="noopener"><img src="images/icons/github.svg" alt=""><span data-i18n="home.soon.github"></span></a>
+      </div>
+    </div>
+    <img class="soon-logo" src="images/logo_256x256.webp" alt="">
+  </section>
+</main>
+<footer>
+  <img src="images/icons/diamond.svg" alt="">
+  <p data-i18n="footer.tag"></p>
+  <img src="images/icons/diamond.svg" alt="">
+  <p class="fine"><span data-i18n="footer.license"></span> · © 2026 ChiliadMods</p>
+</footer>
+</div>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
