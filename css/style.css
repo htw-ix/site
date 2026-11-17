@@ -150,15 +150,6 @@ body.ready .anim {
   letter-spacing: 3px;
   color: var(--cream);
 }
-.brand img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  transition: transform 0.5s var(--ease);
-}
-.brand:hover img {
-  transform: rotate(14deg) scale(1.07);
-}
 .nav {
   display: flex;
   gap: 6px;
@@ -205,10 +196,6 @@ body.ready .anim {
 .lang-switch button.on {
   background: var(--gold);
   color: #151A21;
-}
-.container {
-  width: min(1120px, 92vw);
-  margin: 0 auto;
 }
 .hero {
   position: relative;
@@ -396,15 +383,6 @@ body.ready .anim {
   border: 1px solid var(--gold-soft);
   color: var(--gold);
 }
-.status.planned {
-  border-color: rgba(62, 92, 73, 0.9);
-  background: rgba(62, 92, 73, 0.2);
-  color: #9CC7A8;
-}
-.status.idea {
-  border-color: var(--cream-18);
-  color: var(--cream-45);
-}
 .soon-logo {
   width: 190px;
   border-radius: 50%;
@@ -443,8 +421,32 @@ body.ready .anim {
   padding-bottom: 26px;
 }
 .cards.single {
-  grid-template-columns: minmax(0, 480px);
+  grid-template-columns: minmax(0, 780px);
   justify-content: center;
+}
+.cards.single .mod-card {
+  padding: 0 0 34px;
+}
+.cards.single .mod-card .banner {
+  width: 100%;
+  margin: 0 0 8px;
+  border-radius: 19px 19px 0 0;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.cards.single .mod-card h2 {
+  font-size: 24px;
+  margin: 16px 30px 10px;
+}
+.cards.single .mod-card p {
+  font-size: 16px;
+  margin: 0 30px;
+}
+.cards.single .mod-card .status {
+  margin: 20px 30px 0;
+  align-self: flex-start;
 }
 .mod-card {
   display: flex;
@@ -461,18 +463,17 @@ body.ready .anim {
   border-color: var(--gold-soft);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.42);
 }
-.mod-card .ic {
-  width: 58px;
-  height: 58px;
-  padding: 16px;
-  background: rgba(243, 235, 221, 0.06);
+.mod-card .banner {
+  width: calc(100% + 60px);
+  margin: -32px -30px 6px;
+  border-radius: 19px 19px 12px 12px;
   border: 1px solid var(--line);
-  border-radius: 14px;
-  transition: border-color 0.4s ease, transform 0.4s var(--ease);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: border-color 0.45s ease;
 }
-.mod-card:hover .ic {
+.mod-card:hover .banner {
   border-color: var(--gold-soft);
-  transform: rotate(-6deg);
 }
 .mod-card h2 {
   font-family: Unbounded;
@@ -572,6 +573,17 @@ body.ready .anim {
   transform: translateY(-6px);
   border-color: var(--gold-soft);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.42);
+}
+.contact-card .ic.nexus,
+.contact-card .ic.proton,
+.contact-card .ic.gh {
+  padding: 4px;
+}
+.contact-card .ic.nexus img,
+.contact-card .ic.proton img,
+.contact-card .ic.gh img {
+  width: 100%;
+  height: 100%;
 }
 .contact-card .ic {
   width: 58px;
@@ -674,19 +686,19 @@ footer img {
 }
 .pre-ring {
   grid-area: 1 / 1;
-  width: 156px;
+  width: 320px;
   animation: spin 2.3s linear infinite;
 }
 .pre-logo {
   grid-area: 1 / 1;
-  width: 86px;
+  width: 246px;
   animation: pulse 2.6s ease-in-out infinite;
 }
 .pre-brand {
   font-family: Unbounded;
   font-size: 14px;
   letter-spacing: 7px;
-  color: var(--cream-45);
+  color: rgba(243, 235, 221, 0.62);
 }
 .chooser {
   position: fixed;
@@ -766,7 +778,31 @@ header, main, footer {
 }
 @media (max-width: 760px) {
   .top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px 12px;
+    padding: 12px 14px 10px;
+  }
+  .brand {
+    min-width: 0;
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+  .nav {
+    grid-column: 1 / -1;
+    width: 100%;
     justify-content: center;
+    gap: 2px;
+  }
+  .nav a {
+    padding: 8px clamp(8px, 2.5vw, 12px);
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+  }
+  .lang-switch button {
+    padding: 7px 10px;
+    font-size: 11px;
   }
   .hero-ring {
     width: min(90vw, 420px);
@@ -774,19 +810,163 @@ header, main, footer {
   .hero-logo {
     width: min(64vw, 320px);
   }
+  .hero {
+    min-height: auto;
+    padding: 34px 14px 48px;
+  }
+  .hero-tag {
+    margin-top: 24px;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
   .soon {
     grid-template-columns: 1fr;
-    padding: 30px 26px;
+    width: calc(100% - 28px);
+    margin: 20px auto 52px;
+    padding: 26px 20px;
   }
   .soon-logo {
-    width: 150px;
+    width: 132px;
     justify-self: center;
   }
   .hero-sub {
-    font-size: 15px;
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .chips {
+    gap: 8px;
+    margin-top: 22px;
+  }
+  .chip {
+    padding: 8px 13px;
+    font-size: 10.5px;
+    letter-spacing: 1.2px;
+  }
+  .cta {
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .btn {
+    padding: 13px 18px;
+    font-size: 14px;
+  }
+  .head {
+    padding: 48px 14px 24px;
+  }
+  .head h1 {
+    letter-spacing: 3px;
+  }
+  .head .sub {
+    font-size: 14px;
+  }
+  .cards,
+  .contact-cards {
+    width: calc(100% - 28px);
+    gap: 16px;
+  }
+  .cards.single .mod-card h2 {
+    font-size: 20px;
+    margin-right: 18px;
+    margin-left: 18px;
+  }
+  .cards.single .mod-card p {
+    font-size: 14px;
+    margin-right: 18px;
+    margin-left: 18px;
+  }
+  .cards.single .mod-card .status {
+    margin-right: 18px;
+    margin-left: 18px;
+  }
+  .note-panel {
+    width: calc(100% - 28px);
+    margin-bottom: 52px;
+    padding: 22px 20px;
+  }
+  .info {
+    width: calc(100% - 28px);
+    gap: 28px;
+    padding-bottom: 52px;
+  }
+  .info-block h3 {
+    font-size: 16px;
+  }
+  .info-block p,
+  .rm {
+    padding-left: 18px;
+  }
+  .info-block p,
+  .rm-item {
+    font-size: 14px;
+  }
+  .contact-card {
+    padding: 24px 20px;
+  }
+  .contact-cards {
+    margin-bottom: 52px;
+  }
+  .nf {
+    min-height: calc(100vh - 132px);
+    padding: 32px 14px;
+  }
+  .nf h1 {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+  .pre-ring {
+    width: min(76vw, 250px);
+  }
+  .pre-logo {
+    width: min(58vw, 180px);
+  }
+  .pre-brand {
+    font-size: 11px;
+    letter-spacing: 4px;
+  }
+  .chooser {
+    gap: 28px;
+    padding: 20px 14px;
+  }
+  .chooser-hint {
+    max-width: 90vw;
+    line-height: 1.6;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  .chooser-btns {
+    gap: 20px;
   }
   .lang-btn img {
-    width: 118px;
+    width: min(29vw, 110px);
+  }
+  .lang-btn span {
+    font-size: 13px;
+  }
+}
+@media (max-width: 380px) {
+  .nav a {
+    padding-right: 6px;
+    padding-left: 6px;
+    font-size: 11px;
+  }
+  .brand {
+    font-size: 11px;
+  }
+  .lang-switch button {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+  .hero-logo {
+    width: min(60vw, 240px);
+  }
+  .hero-tag {
+    font-size: 10px;
+    letter-spacing: 1.4px;
+  }
+  .cta .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 @media (prefers-reduced-motion: reduce) {

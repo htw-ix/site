@@ -1,23 +1,33 @@
 const page = document.body.dataset.page;
 const preloader = document.getElementById("preloader");
 const chooser = document.getElementById("chooser");
-const savedLang = localStorage.getItem("cm-lang");
+const supportedLangs = new Set(["ru", "en"]);
+let savedLang = null;
+try {
+  savedLang = localStorage.getItem("cm-lang");
+} catch {
+  // Storage can be unavailable in private or restricted browser contexts.
+}
 const browserLang = (navigator.language || "en").toLowerCase().startsWith("ru") ? "ru" : "en";
-let lang = savedLang || browserLang;
+let lang = supportedLangs.has(savedLang) ? savedLang : browserLang;
 if (page !== "404") document.body.classList.add("lock");
 
 function applyLang(l) {
-  lang = l;
-  localStorage.setItem("cm-lang", l);
-  const dict = I18N[l];
+  lang = supportedLangs.has(l) ? l : browserLang;
+  try {
+    localStorage.setItem("cm-lang", lang);
+  } catch {
+    // Language switching still works when persistent storage is blocked.
+  }
+  const dict = I18N[lang];
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const v = dict[el.dataset.i18n];
     if (typeof v === "string") el.textContent = v;
   });
   const t = dict["title." + page];
   if (t) document.title = t;
-  document.documentElement.lang = l;
-  document.querySelectorAll("#langSwitch button").forEach(b => b.classList.toggle("on", b.dataset.setlang === l));
+  document.documentElement.lang = lang;
+  document.querySelectorAll("#langSwitch button").forEach(b => b.classList.toggle("on", b.dataset.setlang === lang));
 }
 applyLang(lang);
 
@@ -58,10 +68,17 @@ if (page === "404") {
     i.onload = i.onerror = r;
     i.src = "images/logo_1024x1024.webp";
   });
-  const winLoad = new Promise(r => window.addEventListener("load", r, { once: true }));
+  const winLoad = new Promise(resolve => {
+    if (document.readyState === "complete") {
+      resolve();
+      return;
+    }
+    window.addEventListener("load", resolve, { once: true });
+    setTimeout(resolve, 5000);
+  });
   Promise.all([minDelay, assetLoad, winLoad]).then(() => {
     if (preloader) preloader.classList.add("off");
-    if (!savedLang && page === "home" && chooser) {
+    if (!supportedLangs.has(savedLang) && page === "home" && chooser) {
       setTimeout(() => chooser.classList.add("on"), 480);
     } else {
       document.body.classList.remove("lock");
